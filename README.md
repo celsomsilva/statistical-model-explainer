@@ -168,32 +168,28 @@ Below is the directory structure, shown in list format to reflect the conceptual
 ```
 statistical-model-explainer/
 
-  app/
+  retrieval/
      build_index.py
      search.py
 
-  data/
-     knowledge_base/
-        coefficients.md
-        standard_error.md
-        p_values.md
-        aic_bic.md
-        loglikelihood.md
-        residuals.md
-        multicollinearity.md
-        diagnostics.md
-        linear_regression.md
-        glm_basics.md
-        mixed_effects_models.md
-        hlm_mixed_models.md
-        model_selection.md
-        goodness_of_fit.md
+  kb/
+   knowledge_base/
+   coefficients.md
+   standard_error.md
+   p_values.md
+   aic_bic.md
+   loglikelihood.md
+   residuals.md
+   multicollinearity.md
+   diagnostics.md
+   linear_regression.md
+   glm_basics.md
+   mixed_effects_models.md
+   hlm_mixed_models.md
+   model_selection.md
+   goodness_of_fit.md
 
-  frontend/
-
-  notebooks/
-
-  examples/
+   examples/
      glm_output_r.txt
      hlm_output_r.txt
 
