@@ -8,7 +8,7 @@ __pycache__/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# VSCode settings (caso use)
+# VSCode settings
 .vscode/
 
 # Environments
