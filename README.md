@@ -6,9 +6,14 @@
 
 ---
 
+---
+
 ## Project Status
 
-This repository is **work-in-progress**.  
+
+This repository is temporarily on hold while the corresponding research paper is being prepared. The full implementation will be released after publication. 
+
+---
 
 ---
 
@@ -262,3 +267,4 @@ This project was developed by an engineer and data scientist with a background i
 
 - [LinkedIn](https://linkedin.com/in/celso-m-silva)  
 - Or open an [issue](https://github.com/celsomsilva/statistical-model-explainer/issues)
+
