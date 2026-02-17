@@ -1,23 +1,7 @@
 # Statistical Model Explainer
-
+> “A data scientist is not a button pusher.” — Prof. Luiz Paulo Fávero - USP
 ### Making GLM, Linear Models, and Multilevel Models easier to understand — without cutting corners
 
----
-
----
-
----
-
-## Project Status
-
-
-This repository is temporarily on hold while the corresponding research paper is being prepared. The full implementation will be released after publication. 
-
----
-
----
-
----
 
 ## Why this project exists
 
@@ -178,32 +162,35 @@ statistical-model-explainer/
      search.py
 
   kb/
-   knowledge_base/
-   coefficients.md
-   standard_error.md
-   p_values.md
-   aic_bic.md
-   loglikelihood.md
-   residuals.md
-   multicollinearity.md
-   diagnostics.md
-   linear_regression.md
-   glm_basics.md
-   mixed_effects_models.md
-   hlm_mixed_models.md
-   model_selection.md
-   goodness_of_fit.md
+     knowledge_base/
+	   coefficients.md
+	   standard_error.md
+	   p_values.md
+	   aic_bic.md
+	   loglikelihood.md
+	   residuals.md
+	   multicollinearity.md
+	   diagnostics.md
+	   linear_regression.md
+	   glm_basics.md
+	   mixed_effects_models.md
+	   hlm_mixed_models.md
+	   model_selection.md
+	   goodness_of_fit.md
 
-   examples/
-     glm_output_r.txt
-     hlm_output_r.txt
+  examples/
+     glm_output_R.txt
+     hlm_output_R.txt
 
   tests/
      test_kb_loading.py
      test_retrieval.py
 
-  README.md
-
+  interpret_example.py
+  interpret_example_multilevel.py
+    README.md
+  LICENSE
+  LICENSE-paper.txt
   requirements.txt
 ```
 
@@ -223,6 +210,85 @@ This keeps the project:
 * easy to reason about
 * easy to extend
 * easy to explain to others
+
+---
+
+## Running the example locally
+
+This project is intentionally lightweight and can be run locally with a standard Python setup.
+
+### Requirements
+
+* Python 3.10+
+* No GPU required
+
+### Setup
+
+Clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/celsomsilva/statistical-model-explainer.git
+cd statistical-model-explainer
+pip install -r requirements.txt
+```
+
+### Build the knowledge index
+
+The semantic index is built from the human-written statistical knowledge base:
+
+```bash
+python3 retrieval/build_index.py
+```
+
+This step creates a local vector index used for retrieval.
+
+### Run the interpretation example
+
+To interpret a real model output using retrieval-augmented statistical knowledge:
+
+```bash
+python3 interpret_example.py
+```
+
+The script reads a sample model output from `examples/` and produces a structured interpretation based on retrieved statistical concepts.
+
+
+### End-to-end example
+
+This project focuses on interpreting statistical model outputs using
+retrieval-augmented statistical knowledge.
+
+Given the following model output:
+
+```txt
+Call:
+glm(Sales ~ StoreType + Promo + Season, family = gaussian)
+
+Coefficients:
+(Intercept)      3.12
+StoreTypeB      -2.14
+PromoYes         1.85
+SeasonSpring     0.72
+
+AIC: 154.8
+```
+
+
+Running:
+
+```bash
+python3 interpret_example.py
+```
+
+Produces a structured interpretation by retrieving relevant statistical concepts
+from the knowledge base, including:
+
+* Interpretation of negative and positive coefficients
+* Meaning of categorical predictors and reference levels
+* Model comparison using AIC
+
+The explanations are grounded in curated statistical knowledge rather than
+opaque black-box reasoning.
 
 ---
 
@@ -260,6 +326,7 @@ This project was developed by an engineer and data scientist with a background i
 * Postgraduate degree in **Data Science and Analytics (USP)**
 * Bachelor's degree in **Computer Engineering (UERJ)**
 * Special interest in statistical models, interpretability, and applied AI
+
 ---
 
 
@@ -267,4 +334,3 @@ This project was developed by an engineer and data scientist with a background i
 
 - [LinkedIn](https://linkedin.com/in/celso-m-silva)  
 - Or open an [issue](https://github.com/celsomsilva/statistical-model-explainer/issues)
-
