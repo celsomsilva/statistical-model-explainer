@@ -1,5 +1,6 @@
 # Statistical Model Explainer
 > “A data scientist is not a button pusher.” — Prof. Luiz Paulo Fávero - USP
+
 ### Making GLM, Linear Models, and Multilevel Models easier to understand — without cutting corners
 
 
@@ -158,39 +159,42 @@ Below is the directory structure, shown in list format to reflect the conceptual
 statistical-model-explainer/
 
   retrieval/
+     __init__.py
      build_index.py
      search.py
+     logging_config.py
 
   kb/
-     knowledge_base/
-	   coefficients.md
-	   standard_error.md
-	   p_values.md
-	   aic_bic.md
-	   loglikelihood.md
-	   residuals.md
-	   multicollinearity.md
-	   diagnostics.md
-	   linear_regression.md
-	   glm_basics.md
-	   mixed_effects_models.md
-	   hlm_mixed_models.md
-	   model_selection.md
-	   goodness_of_fit.md
+
+   aic_bic.md
+   coefficients_interpretation.md
+   diagnostics.md
+   glm_basics.md
+   goodness_of_fit.md
+   linear_regression.md
+   loglikelihood.md
+   mixed_effects_models.md
+   model_selection.md
+   multicollinearity.md
+   multilevel_interpretation_advanced.md
+   nlme_lme_specific.md
+   p_values.md
+   residuals.md
+   standard_error.md
+
 
   examples/
      glm_output_R.txt
-     hlm_output_R.txt
+     hlm_output_multilevel_R.txt
 
   tests/
-     test_kb_loading.py
-     test_retrieval.py
+     test_pipeline_minimal
 
   interpret_example.py
   interpret_example_multilevel.py
-    README.md
+  pyproject.toml
+  README.md
   LICENSE
-  LICENSE-paper.txt
   requirements.txt
 ```
 
@@ -200,8 +204,8 @@ statistical-model-explainer/
 
 Each directory has **one clear responsibility**:
 
-* `kb/` → statistical knowledge (the core asset)
-* `retrieval/` → semantic access to that knowledge
+* `kb/` : statistical knowledge (the core asset)
+* `retrieval/` : semantic access to that knowledge
 * `examples/` → real-world model outputs
 * `tests/` → safety and correctness checks
 
@@ -230,7 +234,15 @@ Clone the repository and install the dependencies:
 git clone https://github.com/celsomsilva/statistical-model-explainer.git
 cd statistical-model-explainer
 pip install -r requirements.txt
+pip install -e .
 ```
+
+### Running tests
+
+```bash
+pytest
+```
+
 
 ### Build the knowledge index
 
