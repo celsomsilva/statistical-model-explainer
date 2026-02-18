@@ -1,0 +1,41 @@
+Call:
+lme(fixed = Weekly_Salesyj ~ Unemployment + 
+                          CPI + 
+                          Fuel_Price + MarkDown1  + MarkDown5  + 
+                          IsHoliday_True +
+                          Temperature + 
+                          Week + Week:Size + Week:Type_B + Week:Type_C + Size +
+                          Type_B + Type_C,
+                        random = list(Store = ~Week, Dept = ~Week),
+                        data = data,
+                        method = "REML")
+
+Random effects:
+ Formula: ~Week | Store
+ Structure: General positive-definite, Log-Cholesky parametrization
+            StdDev     Corr  
+(Intercept) 2.11264750 (Intr)
+Week        0.01066595 -0.26 
+
+ Formula: ~Week | Dept %in% Store
+ Structure: General positive-definite, Log-Cholesky parametrization
+            StdDev      Corr  
+(Intercept) 11.25319090 (Intr)
+Week         0.05125953 0.062 
+Residual     2.10440648       
+
+Fixed effects
+Coefficients:
+                   Value Std.Error     DF  t-value p-value
+(Intercept)    23.741786 0.6705702 148171 35.40537  0.0000
+Unemployment    1.296713 0.0843681 148171 15.36970  0.0000
+Fuel_Price      0.041510 0.0084712 148171  4.90012  0.0000
+MarkDown1      -0.046658 0.0060371 148171 -7.72856  0.0000
+MarkDown5       0.052054 0.0063564 148171  8.18923  0.0000
+IsHoliday_True  0.284764 0.0208569 148171 13.65321  0.0000
+Temperature     0.043982 0.0104086 148171  4.22558  0.0000
+Size            4.511479 0.5964620     41  7.56373  0.0000
+Week:Size      -0.007060 0.0030416 148171 -2.32133  0.0203
+
+AIC: -400
+

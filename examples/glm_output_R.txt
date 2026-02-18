@@ -1,0 +1,11 @@
+Call:
+glm(Sales ~ StoreType + Promo + Season, family = gaussian)
+
+Coefficients:
+(Intercept)      3.12
+StoreTypeB      -2.14
+PromoYes         1.85
+SeasonSpring     0.72
+
+AIC: 154.8
+
