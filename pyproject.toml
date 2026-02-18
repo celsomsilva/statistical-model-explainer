@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "statistical-model-explainer"
+version = "0.1.0"
+description = "Statistical model interpreter using semantic retrieval"
+authors = [{name = "Celso M. Silva"}]
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
