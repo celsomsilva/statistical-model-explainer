@@ -265,43 +265,6 @@ python3 interpret_example.py
 The script reads a sample model output from `examples/` and produces a structured interpretation based on retrieved statistical concepts.
 
 
-### End-to-end example
-
-This project focuses on interpreting statistical model outputs using
-retrieval-augmented statistical knowledge.
-
-Given the following model output:
-
-```txt
-Call:
-glm(Sales ~ StoreType + Promo + Season, family = gaussian)
-
-Coefficients:
-(Intercept)      3.12
-StoreTypeB      -2.14
-PromoYes         1.85
-SeasonSpring     0.72
-
-AIC: 154.8
-```
-
-
-Running:
-
-```bash
-python3 interpret_example.py
-```
-
-Produces a structured interpretation by retrieving relevant statistical concepts
-from the knowledge base, including:
-
-* Interpretation of negative and positive coefficients
-* Meaning of categorical predictors and reference levels
-* Model comparison using AIC
-
-The explanations are grounded in curated statistical knowledge rather than
-opaque black-box reasoning.
-
 ---
 
 ## Future directions (intentionally postponed)
