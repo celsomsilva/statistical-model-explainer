@@ -104,7 +104,7 @@ def extract_statistical_signals(text: str) -> Dict[str, List[str]]:
         signals["model_metrics"].append("BIC interpretation in linear regression model")
     
     # Detect p-values
-    if "Pr(>|t|)" in text or "Pr(>|z|)" in text:
+    if "Pr(>|t|)" in text or "Pr(>|z|)" in text or "p-value" in text:
         signals["inference"] = ["interpretation of p-values in linear regression model"]
 
     # Detect standard errors
