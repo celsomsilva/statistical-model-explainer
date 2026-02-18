@@ -1,10 +1,11 @@
 Call:
 glm(Sales ~ StoreType + Promo + Season, family = gaussian)
 
-Coefficients:
-Std. Error p-value
+
+
+Coefficients Std. Error p-value
 Intercept 3.12 0.03
-StoreType -2.14 0.04	
+Store -2.14 0.04	
 Promo 1.85 0.09
 Season 0.72 0.00003
 

@@ -1,9 +1,15 @@
-# -*- coding: utf-8 -*-
-"""
-build_index_logged.py
 
-Version of build_index.py with professional logging, error handling,
-and safety checks added. Designed to be a drop-in replacement.
+"""
+Builds the semantic index from the statistical knowledge base.
+
+This is the step that transforms human-written statistical explanations
+into something the system can search.
+
+Each markdown file is split into chunks, embedded, and stored in Chroma.
+
+This only needs to be run when the knowledge base changes.
+
+The index is persisted locally.
 """
 
 from pathlib import Path
@@ -34,7 +40,15 @@ logging.basicConfig(
 logger = logging.getLogger("retrieval.build_index")
 
 
-# ===== HELPERS =====
+"""
+Split long KB files into overlapping chunks.
+
+Overlap is intentional. It preserves context across chunk boundaries,
+which improves retrieval quality later.
+
+This is a simple sliding window, not sentence-aware on purpose.
+Statistical explanations tend to be compact already.
+"""
 
 def split_text(text: str):
 
@@ -58,7 +72,20 @@ def split_text(text: str):
     return chunks
 
 
-# ===== MAIN BUILD FUNCTION =====
+"""
+Read all markdown files from the knowledge base and build the vector index.
+
+This function:
+
+- loads KB files
+- splits them into chunks
+- generates embeddings
+- stores everything in Chroma
+
+If anything fails here, the retrieval pipeline will not work.
+
+This is the foundation of the explainer.
+"""
 
 def build_index():
 
@@ -174,6 +201,8 @@ def build_index():
 
 
 # ===== ENTRYPOINT =====
+# Entry point for manual execution.
+# This allows rebuilding the index from the command line.
 
 if __name__ == "__main__":
 

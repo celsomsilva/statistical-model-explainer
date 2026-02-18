@@ -1,14 +1,12 @@
 """
-Simple statistical model output interpreter using semantic retrieval.
-
-This script:
-1. Reads a model output text file
-2. Extracts key statistical signals
-3. Queries the RAG knowledge base
-4. Produces a structured explanation
-
-No LLMs involved.
+Minimal interpreter for linear and GLM model outputs.
+This script demonstrates the core idea of the project:
+Take a model summary, detect key statistical elements,
+and retrieve the relevant explanations from the knowledge base.
+This version does not use LLMs.
+Everything is grounded in explicit statistical knowledge.
 """
+
 
 from pathlib import Path
 import re
@@ -29,9 +27,11 @@ EXAMPLES_PATH = PROJECT_ROOT / "examples"
 
 
 
-# =========================
-# Delete markdown symbols
-# =========================
+"""
+Remove markdown formatting so explanations can be printed cleanly.
+This keeps output readable and avoids leaking formatting artifacts
+from the KB files.
+"""
 
 def clean_markdown(text):
 
@@ -68,15 +68,15 @@ def clean_markdown(text):
 
 
 
-
-# =========================
-# Parsing logic
-# =========================
+"""
+Inspect model output and detect statistical concepts present.
+This is a heuristic parser, not a full statistical parser.
+The goal is simply to identify which explanations should be retrieved.
+"""
 
 def extract_statistical_signals(text: str) -> Dict[str, List[str]]:
-    """
-    Extracts interpretable statistical signals from model output.
-    """
+    
+    #Extracts interpretable statistical signals from model output.    
     signals = {
         "coefficients": [],
         "model_metrics": []
@@ -112,13 +112,20 @@ def extract_statistical_signals(text: str) -> Dict[str, List[str]]:
         signals.setdefault("inference", []).append(
         "interpretation of standard errors in regression"
     )
+    
+    # Detect log-lik
+    if "log-lik" in text or "loglik)" in text or "logLik" in text:
+        signals["inference"] = ["interpretation of log likelihood in linear regression model"]
 
     return signals
 
 
-# =========================
-# Output cleaning helpers
-# =========================
+
+"""
+Remove duplicate retrieval results and limit their size.
+Retrieval systems sometimes return overlapping chunks.
+This keeps output concise.
+"""
 
 def unique_and_trim(texts, max_chars=400):
     seen = set()
@@ -134,9 +141,15 @@ def unique_and_trim(texts, max_chars=400):
 
 
 
-# =========================
-# Interpretation logic
-# =========================
+"""
+Main interpretation pipeline.
+This function:
+- detects statistical signals
+- retrieves relevant explanations
+- prints a structured report
+It does not modify the model output itself.
+It explains it.
+"""
 
 def interpret_model_output(text: str) -> None:
 
@@ -237,6 +250,7 @@ def interpret_model_output(text: str) -> None:
 
 # =========================
 # CLI entry point
+# Allows running the interpreter directly on example files.
 # =========================
 
 if __name__ == "__main__":

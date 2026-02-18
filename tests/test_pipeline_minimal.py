@@ -1,3 +1,14 @@
+
+"""
+Minimal tests for the retrieval pipeline.
+These tests verify that:
+- the knowledge base exists
+- the search system can retrieve documents
+This does not test statistical correctness.
+Only infrastructure integrity.
+"""
+
+
 import numpy as np
 import chromadb
 from pathlib import Path
@@ -5,6 +16,11 @@ from pathlib import Path
 import retrieval.search as search_mod
 
 
+"""
+Simple fake embedding model used for testing.
+This avoids loading real models during tests,
+making tests faster and deterministic.
+"""
 class FakeEmbedder:
     def __init__(self, *args, **kwargs):
         pass
@@ -17,6 +33,8 @@ class FakeEmbedder:
         return np.stack([np.ones(384, dtype=np.float32) for _ in texts], axis=0)
 
 
+# Sanity check.
+# Ensures the KB directory is not empty.
 def test_kb_has_markdown_files():
     root = Path(__file__).resolve().parents[1]
     kb = root / "kb"
@@ -24,9 +42,11 @@ def test_kb_has_markdown_files():
     assert len(md_files) > 0
 
 
+# Tests whether semantic search returns results.
+# Uses a temporary index to isolate the test environment.
 def test_search_returns_documents(monkeypatch, tmp_path):
-    # creates a temporary index for the test
 
+    # creates a temporary index for the test
     index_path = tmp_path / "index"
     client = chromadb.PersistentClient(path=str(index_path))
     collection = client.get_or_create_collection(name="statistical_knowledge")

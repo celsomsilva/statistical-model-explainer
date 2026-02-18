@@ -1,3 +1,18 @@
+
+"""
+Semantic search over the statistical knowledge base.
+
+This module is responsible for retrieving relevant statistical explanations
+based on a query.
+
+It does NOT interpret anything.
+
+It only answers the question:
+"What statistical knowledge is relevant to this concept?"
+"""
+
+
+
 from pathlib import Path
 from typing import List
 
@@ -21,6 +36,17 @@ COLLECTION_NAME = "statistical_knowledge"
 
 _embedder = None
 
+
+
+"""
+Lazy-load the embedding model.
+
+We only load it once to avoid unnecessary overhead,
+especially when running multiple searches.
+
+SentenceTransformer models are not cheap to initialize.
+"""
+
 def get_embedder():
     global _embedder
     if _embedder is None:
@@ -30,9 +56,16 @@ def get_embedder():
 
 
 
-# =========================
-# Search logic
-# =========================
+"""
+Retrieve the most relevant statistical explanations for a query.
+
+The query is embedded and compared against the indexed KB chunks.
+
+This function returns raw text. It does not modify, summarize,
+or interpret the content.
+
+Interpretation happens elsewhere.
+"""
 
 def semantic_search(query: str, k: int = 3) -> List[str]:
 
@@ -80,6 +113,9 @@ def semantic_search(query: str, k: int = 3) -> List[str]:
 # =========================
 # CLI entry point
 # =========================
+# Allows quick manual testing from the command line.
+# Useful when validating index quality.
+
 
 if __name__ == "__main__":
     query = "How should I interpret a negative coefficient in a regression model?"

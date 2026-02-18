@@ -1,3 +1,13 @@
+"""
+Interpreter specialized for multilevel (mixed-effects) model outputs.
+
+Multilevel models contain additional components such as random effects
+and variance structures.
+
+This module focuses on explaining those elements correctly.
+"""
+
+
 import re
 from typing import Dict, List
 from retrieval.search import semantic_search
@@ -5,6 +15,10 @@ from retrieval.logging_config import setup_logging
 logger = setup_logging("interpret.linear")
 
 
+
+
+# Same purpose as in linear interpreter.
+# Kept separate for clarity and independence.
 
 def clean_markdown(text: str) -> str:
     """
@@ -39,6 +53,9 @@ def clean_markdown(text: str) -> str:
     return "\n".join(cleaned_lines)
 
 
+# Removes duplicate KB hits.
+# Multilevel queries often retrieve overlapping explanations.
+
 def unique_and_trim(results: List[str]) -> List[str]:
 
     seen = set()
@@ -55,6 +72,16 @@ def unique_and_trim(results: List[str]) -> List[str]:
 
     return unique
 
+
+
+"""
+Detect multilevel-specific statistical concepts in model output.
+This includes:
+- fixed effects
+- random effects
+- variance components
+- model selection metrics
+"""
 
 def extract_multilevel_signals(text: str) -> Dict[str, List[str]]:
 
@@ -78,14 +105,23 @@ def extract_multilevel_signals(text: str) -> Dict[str, List[str]]:
             "interpretation of random effects variance components"
         ]
 
-    if "AIC" in text or "BIC" in text:
+    # Detect AIC / BIC / logLik
+    if "AIC" in text or "BIC" in text or "loglik" in text or "logLik" in text or "loglik" in text:
 
         signals["metrics"] = [
-            "model selection criteria in multilevel models AIC BIC REML ML"
+            "model selection criteria in multilevel models AIC BIC logLik REML ML"
         ]
+        
 
     return signals
 
+
+
+"""
+Main interpretation pipeline for multilevel models.
+This works similarly to the linear interpreter but targets
+hierarchical model concepts.
+"""
 
 def interpret_multilevel_output(text: str):
 
@@ -220,7 +256,7 @@ def interpret_multilevel_output(text: str):
 
     print("=== END OF REPORT ===")
 
-
+# Entry point for manual testing with example multilevel output.
 if __name__ == "__main__":
 
     with open("examples/hlm_output_multilevel_R.txt") as f:
