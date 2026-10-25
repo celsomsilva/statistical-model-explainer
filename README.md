@@ -1,7 +1,7 @@
 # Statistical Model Explainer
-> “A data scientist is not a button pusher.” — Prof. Luiz Paulo Fávero - USP
+> “A data scientist is not a button pusher.” - Prof. Luiz Paulo Fávero - USP
 
-### Making GLM, Linear Models, and Multilevel Models easier to understand — without cutting corners
+### Making GLM, Linear Models, and Multilevel Models easier to understand - without cutting corners
 
 
 ## Why this project exists
@@ -13,7 +13,7 @@ The math is right.
 The software works.
 But the **interpretation is not obvious**.
 
-This project exists because *good models are often misunderstood*, miscommunicated, or oversimplified — especially once results leave the hands of the person who built them.
+This project exists because *good models are often misunderstood*, miscommunicated, or oversimplified - especially once results leave the hands of the person who built them.
 
 The goal here is straightforward:
 
@@ -52,7 +52,7 @@ No replacing statistical thinking with buzzwords.
 * Not a “just ask GPT” wrapper
 * Not a replacement for statistical judgment
 
-This system **supports interpretation** — it does not invent conclusions.
+This system **supports interpretation** - it does not invent conclusions.
 
 ---
 
@@ -291,21 +291,3 @@ If you can’t explain your model clearly, you probably don’t understand it we
 This repository is an attempt to help close that gap.
 
 ---
-
-
-## About the Author
-
-
-This project was developed by an engineer and data scientist with a background in:
-
-* Postgraduate degree in **Data Science and Analytics (USP)**
-* Bachelor of **Science in Electrical and Computer Engineering (UERJ)**
-* Special interest in statistical models, interpretability, and applied AI
-
----
-
-
-## Contact  
-
-- [LinkedIn](https://linkedin.com/in/celso-m-silva)  
-- Or open an [issue](https://github.com/celsomsilva/statistical-model-explainer/issues)
