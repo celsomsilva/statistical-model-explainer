@@ -290,4 +290,22 @@ If you can’t explain your model clearly, you probably don’t understand it we
 
 This repository is an attempt to help close that gap.
 
+
+
 ---
+
+## Author
+
+This project was developed by an engineer and data scientist with a background in:
+
+* Postgraduate degree in **Data Science and Analytics (USP)**
+* Bachelor of **Science in Electrical and Computer Engineering (UERJ)**
+* Special interest in statistical models, interpretability, and applied AI
+
+---
+
+
+## Contact  
+
+- [LinkedIn](https://linkedin.com/in/celso-m-silva)  
+- Or open an [issue](https://github.com/celsomsilva/statistical-model-explainer/issues)
